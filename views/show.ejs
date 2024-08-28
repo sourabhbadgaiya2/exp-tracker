@@ -1,0 +1,17 @@
+<%-include("./partials/header") %> <%- include("./partials/navbar") %>
+<h1>Show</h1>
+<div class="">
+  <ul class="px-10 list-disc">
+    <% if( expense.length > 0){%> <% expense.forEach(expense => { %>
+    <li>
+      <%= expense.title %>
+      <a class="text-yellow-400 font-bold" href="/expense/details/<%= expense._id %>"
+        >Details</a
+      >
+    </li>
+    <%}) %> <% } else{ %>
+    <p>not yet</p>
+    <% } %>
+  </ul>
+</div>
+<%-include("./partials/footer") %>

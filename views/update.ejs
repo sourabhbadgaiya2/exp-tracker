@@ -1,0 +1,43 @@
+<%-include("./partials/header") %> <%- include("./partials/navbar") %>
+<h1>Update</h1>
+<form class="px-10" action="/expense/update/<%= expense._id%>" method="post">
+  <input
+    class="border border-slate-400 px-4 py-1 rounded-xl outline-none"
+    type="text"
+    name="title"
+    placeholder="title"
+    value="<%= expense.title %>"
+  />
+  <input
+    class="border border-slate-400 px-4 py-1 rounded-xl outline-none"
+    type="number"
+    name="amount"
+    placeholder="Amount"
+    value="<%= expense.amount %>"
+  />
+  <input
+    class="border border-slate-400 px-4 py-1 rounded-xl outline-none"
+    type="text"
+    name="category"
+    placeholder="category"
+    value="<%= expense.category %>"
+  />
+  <input
+    class="border border-slate-400 px-4 py-1 rounded-xl outline-none"
+    type="text"
+    name="remark"
+    placeholder="remark"
+    value="<%= expense.remark %>"
+  />
+  <input
+    class="border border-slate-400 px-4 py-1 rounded-xl outline-none"
+    type="text"
+    name="paymentmode"
+    placeholder="payment mode"
+    value="<%= expense.paymentmode %>"
+  />
+  <button class="bg-green-400 py-1 px-3 text-white font-bold text-md rounded">
+    Update
+  </button>
+</form>
+<%-include("./partials/footer") %>
