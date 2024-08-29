@@ -7,6 +7,7 @@ var logger = require('morgan');
 var userSchema = require('./models/userSchema');
 
 var indexRouter = require('./routes/index');
+var multimediaRouter = require('./routes/multimedia');
 var expenseRouter = require('./routes/expense.routes');
 var userRouter = require('./routes/user.routes');
 
@@ -42,6 +43,7 @@ passport.deserializeUser(userSchema.deserializeUser());
 app.use('/', indexRouter);
 app.use('/expense', expenseRouter);
 app.use('/user', userRouter);
+app.use('/media', multimediaRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

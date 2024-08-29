@@ -4,7 +4,7 @@ const Expense = require('../models/expense.schema');
 const router = express.Router();
 
 router.get('/create', (req, res) => {
-  res.render('create');
+  res.render('create', { user: req.user });
 });
 
 router.post('/create', async (req, res) => {
@@ -19,7 +19,7 @@ router.post('/create', async (req, res) => {
 router.get('/show', async (req, res) => {
   try {
     const expense = await Expense.find();
-    res.render('show', { expense });
+    res.render('show', { expense, user: req.user });
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -27,7 +27,7 @@ router.get('/show', async (req, res) => {
 router.get('/details/:id', async (req, res) => {
   try {
     const expense = await Expense.findById(req.params.id);
-    res.render('details', { expense });
+    res.render('details', { expense, user: req.user });
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -43,7 +43,7 @@ router.get('/delete/:id', async (req, res) => {
 router.get('/update/:id', async (req, res) => {
   try {
     const expense = await Expense.findById(req.params.id);
-    res.render('update', { expense });
+    res.render('update', { expense, user: req.user });
   } catch (error) {
     res.status(500).send(error.message);
   }

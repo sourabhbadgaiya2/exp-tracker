@@ -1,0 +1,10 @@
+<%-include("./partials/header") %> <%- include("./partials/navbar") %>
+
+<form action="/media/multimedia" method="post" enctype="multipart/form-data">
+  <input type="text" name="user" placeholder="User" />
+  <input type="text" name="title" placeholder="Title" />
+  <input type="text" name="description" placeholder="description" />
+  <input type="file" name="image" />
+  <button>upload</button>
+</form>
+<%-include("./partials/footer") %>
