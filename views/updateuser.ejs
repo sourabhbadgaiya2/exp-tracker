@@ -1,0 +1,50 @@
+<%-include("./partials/header") %> <%- include("./partials/navbar") %>
+
+<h1>Update User</h1>
+<div class="w-full flex items-center justify-center">
+  <form
+    class="px-10 h-[50vh] justify-center rounded-xl flex flex-col gap-2 items-center shadow-lg"
+    action="/user/updateuser"
+    method="post"
+  >
+    <div class="flex flex-col">
+      <label class="w-full text-lg pl-3" for="">Full-Name</label>
+      <input
+        class="border border-slate-400 px-4 py-3 bg-transparent rounded-md w-72 outline-none"
+        type="text"
+        name="name"
+        placeholder="name"
+        value="<%= user.name %>"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label class="w-full text-lg pl-3" for="">Username</label>
+
+      <input
+        class="border border-slate-400 px-4 py-3 bg-transparent rounded-md w-72 outline-none"
+        type="text"
+        name="username"
+        placeholder="username"
+        value="<%= user.username %>"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label class="w-full text-lg pl-3" for="">Email</label>
+      <input
+        class="border border-slate-400 px-4 py-3 bg-transparent rounded-md w-72 outline-none"
+        type="email"
+        name="email"
+        placeholder="email"
+        value="<%= user.email %>"
+      />
+    </div>
+
+    <button
+      class="bg-[#00A400] py-2 px-3 w-72 text-white font-bold text-md rounded"
+    >
+      Update
+    </button>
+  </form>
+</div>
+
+<%-include("./partials/footer") %>

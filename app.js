@@ -7,12 +7,12 @@ var logger = require('morgan');
 var userSchema = require('./models/userSchema');
 
 var indexRouter = require('./routes/index');
-var multimediaRouter = require('./routes/multimedia');
 var expenseRouter = require('./routes/expense.routes');
 var userRouter = require('./routes/user.routes');
 
 const passport = require('passport');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 var app = express();
 // database
@@ -40,10 +40,11 @@ app.use(passport.session());
 passport.serializeUser(userSchema.serializeUser());
 passport.deserializeUser(userSchema.deserializeUser());
 
+app.use(flash());
+
 app.use('/', indexRouter);
 app.use('/expense', expenseRouter);
 app.use('/user', userRouter);
-app.use('/media', multimediaRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -55,6 +56,10 @@ app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // flash msg
+  res.locals.successMessages = req.flash('Success');
+  res.locals.errorMessages = req.flash('Error');
 
   // render the error page
   res.status(err.status || 500);

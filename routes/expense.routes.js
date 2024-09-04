@@ -1,13 +1,13 @@
 const express = require('express');
 const Expense = require('../models/expense.schema');
-
+const { isLoggedIn } = require('../utils/auth.middileware');
 const router = express.Router();
 
 router.get('/create', (req, res) => {
-  res.render('create', { user: req.user });
+  res.render('create', { title: 'Create Expense', user: req.user });
 });
 
-router.post('/create', async (req, res) => {
+router.post('/create', isLoggedIn, async (req, res) => {
   try {
     const newExpense = new Expense(req.body);
     await newExpense.save();
@@ -16,18 +16,22 @@ router.post('/create', async (req, res) => {
     res.status(500).send(error.message);
   }
 });
-router.get('/show', async (req, res) => {
+router.get('/show', isLoggedIn, async (req, res) => {
   try {
     const expense = await Expense.find();
-    res.render('show', { expense, user: req.user });
+    res.render('show', { title: 'Show Expense', expense, user: req.user });
   } catch (error) {
     res.status(500).send(error.message);
   }
 });
-router.get('/details/:id', async (req, res) => {
+router.get('/details/:id', isLoggedIn, async (req, res) => {
   try {
     const expense = await Expense.findById(req.params.id);
-    res.render('details', { expense, user: req.user });
+    res.render('details', {
+      title: 'Expense Details',
+      expense,
+      user: req.user,
+    });
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -43,7 +47,7 @@ router.get('/delete/:id', async (req, res) => {
 router.get('/update/:id', async (req, res) => {
   try {
     const expense = await Expense.findById(req.params.id);
-    res.render('update', { expense, user: req.user });
+    res.render('update', { title: 'Update Expense', expense, user: req.user });
   } catch (error) {
     res.status(500).send(error.message);
   }

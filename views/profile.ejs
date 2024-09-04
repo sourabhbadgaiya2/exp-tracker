@@ -1,4 +1,36 @@
 <%-include("./partials/header") %> <%- include("./partials/navbar") %>
-<h1>Welcome to <%= user.username.slice(0, 7) + "..." %></h1>
 
+<div class="flex items-center gap-1 p-4 pl-5">
+  <div
+    class="w-12 h-12 bg-red-300 overflow-hidden rounded-md border border-black"
+  >
+    <img
+      class="w-full h-full object-cover cursor-pointer img"
+      src="/images/<%= user.image %>"
+      alt=""
+    />
+    <form
+      class="imgForm"
+      action="/user/upload"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input class="fileInput hidden" type="file" name="image" />
+    </form>
+  </div>
+  <h2 class="text-xl">Hello, <%= user.name %> 👋🏻</h2>
+</div>
+
+<script>
+  const img = document.querySelector('.img');
+  const formImg = document.querySelector('.imgForm');
+  const fileInput = document.querySelector('.fileInput');
+
+  img.addEventListener('click', () => {
+    fileInput.click();
+  });
+  fileInput.addEventListener('change', () => {
+    formImg.submit();
+  });
+</script>
 <%-include("./partials/footer") %>

@@ -1,29 +1,63 @@
 <div class="flex bg-slate-300 items-center justify-between py-2 px-4">
   <img
-    class="w-12 h-12 object-cover rounded-full"
-    src="https://plus.unsplash.com/premium_photo-1695339147223-45c4218c9986?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    class="w-14 h-14 object-cover rounded-full"
+    src="https://w7.pngwing.com/pngs/914/365/png-transparent-freewallet-finance-budgetbakers-wallet-rectangle-personal-finance-logo-thumbnail.png"
     alt=""
   />
-  <div class="flex items-center gap-8 text-xl pr-10">
+  <div class="flex items-center gap-6 text-lg pr-8">
     <% if(user){ %>
-    <a class="hover:text-white hover:scale-125" href="/user/profile">Home</a>
-    <a class="hover:text-white hover:scale-125" href="/expense/create"
+    <a class="hover:text-emerald-500 cursor-pointer" href="/user/profile"
+      >Home</a
+    >
+    <a class="hover:text-emerald-500 cursor-pointer" href="/expense/create"
       >Create Expense</a
     >
-    <a class="hover:text-white hover:scale-125" href="/expense/show"
+    <a class="hover:text-emerald-500 cursor-pointer" href="/expense/show"
       >Show Expense</a
     >
-    <a class="hover:text-white hover:scale-125" href="/about">About</a>
-    <a
-      class="hover:text-white hover:scale-125 text-blue-900 font-bold"
-      href="/user/logout"
-      >Sign Out</a
+    <a class="hover:text-emerald-500 cursor-pointer" href="/about">About</a>
+
+    <p class="hover:text-emerald-500 account cursor-pointer">
+      Account<i class="ri-arrow-down-s-line down"></i>
+    </p>
+
+    <div
+      class="hidden rounded-lg shadow-2xl py-2 px-2 list absolute top-16 right-3 text-justify text-[2.4vh]"
     >
+      <div class="flex flex-col">
+        <a class="hover:text-blue-400" href="/user/logout">Sign Out</a>
+        <a class="hover:text-blue-400" href="/user/updateuser"
+          >Profile Update</a
+        >
+        <a class="hover:text-blue-400" href="/user/deleteuser">Delete Accont</a>
+        <a class="hover:text-blue-400" href="/user/passwordchange"
+          >Password Change</a
+        >
+      </div>
+    </div>
 
     <% }else{ %>
-    <a class="hover:text-white hover:scale-125" href="/">Home</a>
-    <a class="hover:text-white hover:scale-125" href="/about">About</a>
+    <a class="hover:text-emerald-500" href="/">Home</a>
+    <a class="hover:text-emerald-500" href="/about">About</a>
 
     <%} %>
   </div>
 </div>
+
+<script>
+  const account = document.querySelector('.account');
+  const list = document.querySelector('.list');
+  const down = document.querySelector('.down');
+  const up = document.querySelector('.up');
+  var flag = 0;
+  account.addEventListener('click', () => {
+    if (flag == 0) {
+      list.style.display = 'block';
+
+      flag = 1;
+    } else {
+      list.style.display = 'none';
+      flag = 0;
+    }
+  });
+</script>

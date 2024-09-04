@@ -1,6 +1,8 @@
 <%-include("./partials/header") %> <%- include("./partials/navbar") %>
 <h1>Details</h1>
-<div class="rounded-md bg-zinc-700 text-white px-4 w-60 py-2 leading-[1.7] m-4 ml-20">
+<div
+  class="rounded-md bg-zinc-700 text-white px-4 w-60 py-2 leading-[1.7] m-4 ml-20"
+>
   <p class="flex w-52 justify-between">
     <span class="font-bold text-zinc-500">Title</span>
     <span class="w-20">: <%= expense.title %></span>
@@ -17,7 +19,9 @@
     <span class="font-bold text-zinc-500">PaymentMode</span>
     <span class="w-20">: <%= expense.paymentmode %> </span>
   </p>
-  <p class=""><span class="font-bold text-zinc-500">Remark</span> : <%= expense.remark %></p>
+  <p class="">
+    <span class="font-bold text-zinc-500">Remark</span> : <%= expense.remark %>
+  </p>
   <div class="flex gap-10 justify-center my-2">
     <a
       class="bg-red-500 py-1 px-2 rounded text-white font-medium"

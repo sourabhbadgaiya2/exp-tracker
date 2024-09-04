@@ -1,5 +1,6 @@
 <%-include("./partials/header") %> <%- include("./partials/navbar") %>
 <h1>Homepage</h1>
+
 <div class="ml-52 mt-20 w-fit">
   <h2 class="font-bold text-xl">Embrace the Day</h2>
   <p class="text-right mt-4 font-snug">
@@ -7,12 +8,11 @@
     To chase your dreams and make them true.
   </p>
   <br />
-  <a class="text-blue-600 font-bold" href="/media/multimedia">Media</a>
 </div>
 
 <div class="rounded-lg absolute top-[25vh] right-52">
   <form
-    class="flex flex-col gap-3 w-96 py-5 shadow-md  rounded-xl items-center"
+    class="flex flex-col gap-3 w-96 py-5 shadow-md rounded-xl items-center"
     action="/user/signin"
     method="post"
   >
@@ -33,6 +33,7 @@
     >
       Sign In
     </button>
+    <a class="text-blue-700" href="/user/forget-password">forgotten password</a>
     <a
       class="bg-[#3DAE25] w-60 text-xl py-2 px-2 rounded-md text-center text-white font-bold"
       href="/user/register"

@@ -3,11 +3,15 @@ const plm = require('passport-local-mongoose');
 
 const userSchema = mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: [true, ' Username is required'],
+      trim: true,
+    },
     username: {
       type: String,
       required: [true, ' Username is required'],
       trim: true,
-      minLength: [7, 'A minimum 7 letters is required'],
     },
     email: {
       type: String,
@@ -19,6 +23,10 @@ const userSchema = mongoose.Schema(
       ],
     },
     password: String,
+    image: {
+      type: String,
+      default: 'default.jpeg',
+    },
   },
   { timestamps: true }
 );
