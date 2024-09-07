@@ -10,36 +10,50 @@
   <br />
 </div>
 
-<div class="rounded-lg absolute top-[25vh] right-52">
+<div class="rounded absolute top-32 shadow shadow-slate-500 right-52 py-1 bg-white">
+  <h2 class="text-2xl font-bold pl-8">Log in</h2>
   <form
-    class="flex flex-col gap-3 w-96 py-5 shadow-md rounded-xl items-center"
+    class="flex flex-col gap-3 w-96 py-4 rounded-xl items-center"
     action="/user/signin"
     method="post"
   >
     <input
-      class="py-3 w-80 px-2 bg-transparent outline-none border border-zinc-300 rounded-md"
+      class="py-2 w-80 px-2 bg-transparent outline-none border-[1px] border-zinc-500 rounded"
       type="text"
       name="username"
-      placeholder="Username"
+      placeholder="Enter Username"
     />
     <input
-      class="py-3 w-80 px-2 bg-transparent outline-none border border-zinc-300 rounded-md"
+      class="py-2 w-80 px-2 bg-transparent outline-none border-[1px] border-zinc-500 rounded"
       type="password"
       name="password"
-      placeholder="password"
+      placeholder="Enter password"
     />
-    <button
-      class="bg-[#1877F2] text-xl w-80 rounded-md py-2 px-2 font-bold text-white"
+    <button class="btn btn-block w-80 btn-reddit">Log In</button>
+    <a class="" href="/user/forget-password"
+      >forgotten password <span class="text-blue-950">Click here</span></a
     >
-      Sign In
-    </button>
-    <a class="text-blue-700" href="/user/forget-password">forgotten password</a>
-    <a
-      class="bg-[#3DAE25] w-60 text-xl py-2 px-2 rounded-md text-center text-white font-bold"
-      href="/user/register"
+    <a class="btn w-80 text-center btn-social btn-vk" href="/user/register"
       >Create new account</a
     >
+    <a
+      class="btn w-80 text-center btn-social btn-google"
+      href="/user/auth/google"
+      role="button"
+    >
+      <i class="fab fa-google"></i>
+      Sign In with Google
+    </a>
+    <a
+      class="btn w-80 text-center btn-social btn-facebook"
+      href="/user/auth/google"
+      role="button"
+    >
+      <i class="fab fa-facebook"></i>
+      Sign In with Facebook
+    </a>
   </form>
 </div>
+<!-- #C23321 -->
 
 <%-include("./partials/footer") %>

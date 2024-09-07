@@ -1,41 +1,65 @@
 <%-include("./partials/header") %> <%- include("./partials/navbar") %>
 
-<h1>Register</h1>
+<h1 class="text-center font-bold text-xl">Create Your Account</h1>
 <div class="w-full flex items-center justify-center">
   <form
-    class="px-10 h-[50vh] justify-center rounded-xl flex flex-col gap-2 items-center shadow-lg"
+    class="px-8 py-5 justify-center rounded-xl flex flex-col gap-2 items-center shadow shadow-zinc-500 bg-white"
     action="/user/register"
     method="post"
   >
-    <input
-      class="border border-slate-400 px-4 py-3 bg-transparent rounded-md w-72 outline-none"
-      type="text"
-      name="name"
-      placeholder="name"
-    />
-    <input
-      class="border border-slate-400 px-4 py-3 bg-transparent rounded-md w-72 outline-none"
-      type="text"
-      name="username"
-      placeholder="username"
-    />
-    <input
-      class="border border-slate-400 px-4 py-3 bg-transparent rounded-md w-72 outline-none"
-      type="email"
-      name="email"
-      placeholder="email"
-    />
-    <input
-      class="border border-slate-400 px-4 py-3 bg-transparent rounded-md w-72 outline-none"
-      type="password"
-      name="password"
-      placeholder="password"
-    />
-    <button
-      class="bg-[#00A400] py-2 px-3 w-72 text-white font-bold text-md rounded"
+    <div class="flex items-center justify-between gap-2 w-full">
+      <label class="font-medium from-neutral-900 text-xl" for=""
+        >Full-Name</label
+      >
+      <input
+        class="border-[1px] border-zinc-500 px-4 py-2 bg-transparent rounded w-72 outline-none"
+        type="text"
+        name="name"
+        placeholder="Enter Full-Name"
+      />
+    </div>
+    <div class="flex items-center justify-between w-full">
+      <label class="font-medium from-neutral-900 text-xl" for=""
+        >Username</label
+      >
+      <input
+        class="border-[1px] border-zinc-400 px-4 py-2 bg-transparent rounded w-72 outline-none"
+        type="text"
+        name="username"
+        placeholder="Enter Username"
+      />
+    </div>
+
+    <div class="flex items-center justify-between w-full">
+      <label class="font-medium from-neutral-900 text-xl" for="">E-mail</label>
+      <input
+        class="border-[1px] border-zinc-400 px-4 py-2 bg-transparent rounded w-72 outline-none"
+        type="email"
+        name="email"
+        placeholder="Enter Email"
+      />
+    </div>
+    <!-- // -->
+    <div class="flex items-center justify-between w-full">
+      <label class="font-medium from-neutral-900 text-xl" for=""
+        >Password</label
+      >
+      <input
+        class="border-[1px] border-zinc-400 px-4 py-2 bg-transparent rounded w-72 outline-none"
+        type="password"
+        name="password"
+        placeholder="Enter Password"
+      />
+    </div>
+    <button class="btn btn-block btn-github">Sign Up</button>
+    <a
+      class="btn btn-block text-center btn-social btn-google"
+      href="/user/auth/google"
+      role="button"
     >
-      Sign Up
-    </button>
+      <i class="fab fa-google"></i>
+      Sign In with Google
+    </a>
   </form>
 </div>
 

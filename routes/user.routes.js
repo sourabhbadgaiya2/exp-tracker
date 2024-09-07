@@ -5,13 +5,51 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const { isLoggedIn } = require('../utils/auth.middileware');
 const upload = require('../utils/multer');
-const Expense = require('../models/expense.schema');
-
 const fs = require('fs');
 
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(new LocalStrategy(userSchema.authenticate()));
-/* GET home page. */
 
+/* GET home page. */
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: '/user/auth/google/callback',
+      userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
+    },
+    function (accessToken, refreshToken, profile, cb) {
+      userSchema.findOrCreate({ googleId: profile.id }, function (err, user) {
+        return cb(err, user);
+      });
+    }
+  )
+);
+// ----------------------------------------------
+router.get('/', (req, res) => {
+  res.send('<h1>Home</h1><a href="/user/auth/google">Login with Google</a>', {
+    user: req.user,
+  });
+});
+
+router.get(
+  '/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+router.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+    res.redirect('/user/profile');
+  }
+);
+
+// router.get('/profile', (req, res) => {
+//   res.send(`<h1>Profile</h1><pre>${JSON.stringify(req.user, null, 2)}</pre>`);
+// });
+// ---------------------------------
 // account register
 router.get('/register', (req, res) => {
   res.render('register', { title: 'Register', user: req.user });
@@ -102,18 +140,23 @@ router.post('/passwordchange', isLoggedIn, async (req, res, next) => {
 });
 
 // image
-router.post('/upload', isLoggedIn, upload.single('image'), async (req, res) => {
-  try {
-    if (req.user.image != 'default.jpeg') {
-      fs.unlinkSync(`public/images/${req.user.image}`);
+router.post(
+  '/upload',
+  isLoggedIn,
+  upload.single('image'),
+  async (req, res, next) => {
+    try {
+      if (req.user.image != 'default.jpeg') {
+        fs.unlinkSync(`public/images/${req.user.image}`);
+      }
+      req.user.image = req.file.filename;
+      await req.user.save();
+      res.redirect('/user/profile');
+    } catch (error) {
+      next(error);
     }
-    req.user.image = req.file.filename;
-    await req.user.save();
-    res.redirect('/user/profile');
-  } catch (error) {
-    next(error);
   }
-});
+);
 
 // forget password routes
 
